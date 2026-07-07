@@ -55,12 +55,28 @@
       gap: 14px;
     }
 
+    .pagina-marco {
+      position: relative;
+      width: 100%;
+    }
+
     .pagina {
       width: 100%;
       display: block;
       border-radius: 16px;
       background: white;
       box-shadow: 0 10px 24px rgba(75, 70, 63, 0.08);
+    }
+
+    .capa-enlaces {
+      position: absolute;
+      inset: 0;
+    }
+
+    .capa-enlaces a {
+      position: absolute;
+      display: block;
+      background: transparent;
     }
 
     @media (max-width: 680px) {
@@ -78,7 +94,7 @@
     </section>
   </main>
 
-  <script>
+  <script type="module">
     const params = new URLSearchParams(window.location.search);
     const archivo = params.get("file") || "1.pdf";
     const version = params.get("v") || Date.now();
@@ -87,6 +103,38 @@
     const pdfUrl = `${archivoSeguro}?v=${encodeURIComponent(version)}`;
     const estadoPdf = document.getElementById("estadoPdf");
     const paginasPdf = document.getElementById("paginasPdf");
+
+    function crearEnlaces(anotaciones, viewport, contenedorEnlaces) {
+      for (const anotacion of anotaciones) {
+        if (anotacion.subtype !== "Link") {
+          continue;
+        }
+
+        const url = anotacion.url || anotacion.unsafeUrl;
+
+        if (!url) {
+          continue;
+        }
+
+        const rect = viewport.convertToViewportRectangle(anotacion.rect);
+        const izquierda = Math.min(rect[0], rect[2]);
+        const arriba = Math.min(rect[1], rect[3]);
+        const ancho = Math.abs(rect[0] - rect[2]);
+        const alto = Math.abs(rect[1] - rect[3]);
+        const enlace = document.createElement("a");
+
+        enlace.href = url;
+        enlace.target = "_blank";
+        enlace.rel = "noopener noreferrer";
+        enlace.style.left = `${izquierda}px`;
+        enlace.style.top = `${arriba}px`;
+        enlace.style.width = `${ancho}px`;
+        enlace.style.height = `${alto}px`;
+        enlace.setAttribute("aria-label", "Abrir enlace del PDF");
+
+        contenedorEnlaces.appendChild(enlace);
+      }
+    }
 
     async function cargarPdf() {
       try {
@@ -101,10 +149,15 @@
           const viewportBase = pagina.getViewport({ scale: 1 });
           const escala = anchoContenedor / viewportBase.width;
           const viewport = pagina.getViewport({ scale: Math.max(escala, 0.1) });
+          const paginaMarco = document.createElement("div");
           const canvas = document.createElement("canvas");
+          const capaEnlaces = document.createElement("div");
           const contexto = canvas.getContext("2d");
+          const anotaciones = await pagina.getAnnotations();
 
+          paginaMarco.className = "pagina-marco";
           canvas.className = "pagina";
+          capaEnlaces.className = "capa-enlaces";
           canvas.width = Math.floor(viewport.width * window.devicePixelRatio);
           canvas.height = Math.floor(viewport.height * window.devicePixelRatio);
           canvas.style.width = `${Math.floor(viewport.width)}px`;
@@ -117,7 +170,10 @@
             viewport
           }).promise;
 
-          paginasPdf.appendChild(canvas);
+          crearEnlaces(anotaciones, viewport, capaEnlaces);
+          paginaMarco.appendChild(canvas);
+          paginaMarco.appendChild(capaEnlaces);
+          paginasPdf.appendChild(paginaMarco);
         }
 
         estadoPdf.hidden = true;
