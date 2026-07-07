@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mis XV Fátima Gabriela</title>
+
+  <!-- SEO básico -->
+  <meta name="title" content="Mis XV Fátima Gabriela">
+  <meta name="description" content="Estás invitado a celebrar los XV años de Fátima Gabriela.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mis XV Fátima Gabriela">
+  <meta property="og:description" content="Estás invitado a celebrar los XV años de Fátima Gabriela.">
+  <meta property="og:image" content="https://i.postimg.cc/cJ0vmCHP/XVCAMI.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://misxvfatimagabriela.netlify.app/">
+
+  <link rel="icon" href="https://i.postimg.cc/cJ0vmCHP/XVCAMI.png" type="image/png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --verde: #97a36b;
+      --verde-oscuro: #6f7b4e;
+      --dorado: #b99841;
+      --crema: #f9f5ef;
+      --marfil: #fffaf3;
+      --texto: #4b463f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Arapey", serif;
+      color: var(--texto);
+      background:
+        radial-gradient(circle at top left, rgba(151, 163, 107, 0.22), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(185, 152, 65, 0.18), transparent 35%),
+        var(--crema);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 430px;
+      background: rgba(255, 250, 243, 0.94);
+      border: 1px solid rgba(185, 152, 65, 0.45);
+      border-radius: 28px;
+      padding: 42px 28px 34px;
+      box-shadow: 0 18px 45px rgba(75, 70, 63, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before,
+    .card::after {
+      content: "✦";
+      position: absolute;
+      color: rgba(185, 152, 65, 0.35);
+      font-size: 1.4rem;
+    }
+
+    .card::before {
+      top: 22px;
+      left: 24px;
+    }
+
+    .card::after {
+      bottom: 22px;
+      right: 24px;
+    }
+
+    .subtitulo {
+      font-size: 1.15rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--verde-oscuro);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 4.1rem;
+      font-weight: 400;
+      margin: 0;
+      color: var(--verde-oscuro);
+      line-height: 1;
+    }
+
+    h2 {
+      font-family: "Great Vibes", cursive;
+      font-size: 3.25rem;
+      font-weight: 400;
+      margin: 4px 0 18px;
+      color: var(--dorado);
+      line-height: 1.05;
+    }
+
+    .fecha {
+      font-size: 1.35rem;
+      color: var(--verde-oscuro);
+      margin-bottom: 26px;
+      font-style: italic;
+    }
+
+    .divider {
+      width: 72px;
+      height: 1px;
+      background: var(--dorado);
+      margin: 0 auto 26px;
+    }
+
+    .texto {
+      font-size: 1.13rem;
+      line-height: 1.45;
+      margin: 0 auto 28px;
+      max-width: 320px;
+    }
+
+    .acciones {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .boton {
+      display: block;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 14px 26px;
+      font-size: 1.18rem;
+      font-style: italic;
+      transition: all 0.25s ease;
+    }
+
+    .boton-principal {
+      background: var(--verde);
+      color: white;
+      border: 1px solid var(--verde);
+      box-shadow: 0 8px 20px rgba(151, 163, 107, 0.28);
+    }
+
+    .boton-secundario {
+      background: transparent;
+      color: var(--verde-oscuro);
+      border: 1px solid var(--dorado);
+    }
+
+    .boton:hover {
+      transform: translateY(-2px);
+      filter: brightness(0.98);
+    }
+
+    .pases {
+      margin-top: 22px;
+      font-size: 1rem;
+      color: var(--verde-oscuro);
+      letter-spacing: 1px;
+    }
+
+    .firma {
+      margin-top: 26px;
+      font-size: 0.95rem;
+      color: rgba(75, 70, 63, 0.7);
+    }
+
+    @media (max-width: 380px) {
+      .card {
+        padding: 38px 22px 30px;
+      }
+
+      h1 {
+        font-size: 3.6rem;
+      }
+
+      h2 {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="card">
+    <div class="subtitulo">Mis XV</div>
+
+    <h1>Fátima</h1>
+    <h2>Gabriela</h2>
+
+    <div class="fecha">18 de julio 2026</div>
+
+    <div class="divider"></div>
+
+    <p class="texto">
+      Hay momentos inolvidables que se atesoran en el corazón para siempre.
+      Queremos compartir contigo esta celebración tan especial.
+    </p>
+
+    <div class="acciones">
+      <a
+        class="boton boton-principal"
+        id="verInvitacion"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer">
+        Ver invitación PDF
+      </a>
+
+      <a
+        class="boton boton-secundario"
+        id="confirmarAsistencia"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer">
+        Confirmar asistencia
+      </a>
+    </div>
+
+    <div class="pases" id="textoPases"></div>
+
+    <div class="firma">www.thetwodesign.com</div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+const pases = parseInt(params.get("pases")) || 1;
+
+const archivos = {
+  1: "1.pdf",
+  2: "2.pdf",
+  3: "3.pdf",
+  4: "4.pdf",
+  5: "5.pdf"
+};
+
+// PDF
+document.getElementById("verInvitacion").href =
+  archivos[pases] || archivos[1];
+
+// Texto de pases
+document.getElementById("textoPases").textContent =
+  pases === 1
+    ? "Hemos reservado para ti 1 pase"
+    : `Hemos reservado para ti ${pases} pases`;
+
+// WhatsApp
+let mensaje;
+
+if (pases === 1) {
+  mensaje =
+    "Hola, confirmo mi asistencia a los quince años de Fátima. Asistiré con 1 lugar reservado. Muchas gracias por la invitación. Nos vemos pronto.";
+} else {
+  mensaje =
+    `Hola, confirmamos nuestra asistencia a los quince años de Fátima. Asistiremos con ${pases} lugares reservados. Muchas gracias por la invitación. Nos vemos pronto.`;
+}
+
+document.getElementById("confirmarAsistencia").href =
+  `https://api.whatsapp.com/send/?phone=50236738591&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0&wame_ctl=1`;
+  </script>
+
+</body>
+</html>
