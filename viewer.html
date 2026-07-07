@@ -176,7 +176,7 @@
           paginasPdf.appendChild(paginaMarco);
         }
 
-        estadoPdf.hidden = true;
+        estadoPdf.remove();
         paginasPdf.hidden = false;
       } catch (error) {
         estadoPdf.textContent = "No se pudo cargar la invitacion.";
