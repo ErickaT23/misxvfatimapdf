@@ -14,17 +14,17 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mis XV Fátima Gabriela">
   <meta property="og:description" content="Estás invitado a celebrar los XV años de Fátima Gabriela.">
-  <meta property="og:image" content="https://i.postimg.cc/cJ0vmCHP/XVCAMI.png">
+  <meta property="og:image" content="https://i.postimg.cc/DfcGkW8D/XVFG1.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://misxvfatimagabriela.netlify.app/">
 
-  <link rel="icon" href="https://i.postimg.cc/cJ0vmCHP/XVCAMI.png" type="image/png">
+  <link rel="icon" href="https://i.postimg.cc/DfcGkW8D/XVFG1.jpg" type="image/png">
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Cormorant+Garamond:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -34,6 +34,7 @@
       --crema: #f9f5ef;
       --marfil: #fffaf3;
       --texto: #4b463f;
+      --degradado-texto: linear-gradient(180deg, #faffe4 0%, #daf6aa 52%, #71864c 100%);
     }
 
     * {
@@ -68,55 +69,60 @@
       overflow: hidden;
     }
 
-    .card::before,
-    .card::after {
-      content: "✦";
-      position: absolute;
-      color: rgba(185, 152, 65, 0.35);
-      font-size: 1.4rem;
-    }
-
-    .card::before {
-      top: 22px;
-      left: 24px;
-    }
-
-    .card::after {
-      bottom: 22px;
-      right: 24px;
-    }
-
     .subtitulo {
+      font-family: "Great Vibes", cursive;
       font-size: 1.15rem;
       letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--verde-oscuro);
       margin-bottom: 10px;
+      padding: 5px;
+      background: var(--degradado-texto);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 1px 0 rgba(255, 250, 243, 0.95), 0 2px 4px rgba(75, 70, 63, 0.14);
+      -webkit-text-stroke: 0.45px rgba(75, 70, 63, 0.12);
+    }
+
+    h1,
+    h2 {
+      font-family: "Great Vibes", cursive;
+      font-weight: 400;
+      line-height: 1;
+      padding: 5px;
+      background: var(--degradado-texto);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 1px 0 rgba(255, 250, 243, 0.96), 0 3px 6px rgba(75, 70, 63, 0.16);
+      -webkit-text-stroke: 0.5px rgba(75, 70, 63, 0.14);
     }
 
     h1 {
-      font-family: "Great Vibes", cursive;
       font-size: 4.1rem;
-      font-weight: 400;
       margin: 0;
-      color: var(--verde-oscuro);
-      line-height: 1;
     }
 
     h2 {
-      font-family: "Great Vibes", cursive;
       font-size: 3.25rem;
-      font-weight: 400;
       margin: 4px 0 18px;
-      color: var(--dorado);
       line-height: 1.05;
     }
 
     .fecha {
+      font-family: "Cormorant Garamond", serif;
       font-size: 1.35rem;
-      color: var(--verde-oscuro);
       margin-bottom: 26px;
+      padding: 5px;
       font-style: italic;
+      background: var(--degradado-texto);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 1px 0 rgba(255, 250, 243, 0.94), 0 2px 4px rgba(75, 70, 63, 0.14);
+      -webkit-text-stroke: 0.4px rgba(75, 70, 63, 0.12);
     }
 
     .divider {
@@ -131,6 +137,7 @@
       line-height: 1.45;
       margin: 0 auto 28px;
       max-width: 320px;
+      color: #71864c;
     }
 
     .acciones {
@@ -145,21 +152,22 @@
       border-radius: 999px;
       padding: 14px 26px;
       font-size: 1.18rem;
-      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       transition: all 0.25s ease;
     }
 
     .boton-principal {
-      background: var(--verde);
+      background-color: #71864c;
       color: white;
-      border: 1px solid var(--verde);
+      border: 1px solid #71864c;
       box-shadow: 0 8px 20px rgba(151, 163, 107, 0.28);
     }
 
     .boton-secundario {
-      background: transparent;
-      color: var(--verde-oscuro);
-      border: 1px solid var(--dorado);
+      background: rgba(255, 255, 255, 0.7);
+      color: #71864c;
+      border: 1px solid #71864c;
     }
 
     .boton:hover {
@@ -199,7 +207,7 @@
 <body>
 
   <main class="card">
-    <div class="subtitulo">Mis XV</div>
+    <div class="subtitulo">Mis Quince</div>
 
     <h1>Fátima</h1>
     <h2>Gabriela</h2>
