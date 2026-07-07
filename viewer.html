@@ -6,7 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>Invitacion PDF</title>
+  <title>Invitacion XV Fatima Gabriela</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -15,20 +18,111 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: #f9f5ef;
-      font-family: Arial, sans-serif;
+      font-family: "Arapey", serif;
+      color: #4b463f;
+      background:
+        linear-gradient(rgba(249, 245, 239, 0.35), rgba(249, 245, 239, 0.35)),
+        url("/fondoverde.jpg") center/cover no-repeat,
+        #f9f5ef;
+      padding: 24px 16px;
+    }
+
+    .contenedor {
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .encabezado {
+      text-align: center;
+      background: rgba(255, 250, 243, 0.92);
+      border: 1px solid rgba(185, 152, 65, 0.35);
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 18px 45px rgba(75, 70, 63, 0.1);
+      margin-bottom: 18px;
+    }
+
+    .subtitulo {
+      font-family: "Great Vibes", cursive;
+      font-size: 30px;
+      margin: 0 0 8px;
+      background: linear-gradient(180deg, #eef9d8 0%, #a9cf7a 42%, #6f9f52 72%, #4f7a39 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Great Vibes", cursive;
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1.05;
+      background: linear-gradient(180deg, #eef9d8 0%, #a9cf7a 42%, #6f9f52 72%, #4f7a39 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .texto {
+      margin: 10px 0 0;
+      font-size: 1.05rem;
+      color: #71864c;
+    }
+
+    .marco-pdf {
+      background: rgba(255, 250, 243, 0.94);
+      border: 1px solid rgba(185, 152, 65, 0.35);
+      border-radius: 24px;
+      padding: 14px;
+      box-shadow: 0 18px 45px rgba(75, 70, 63, 0.1);
     }
 
     .visor {
       width: 100%;
-      height: 100vh;
+      height: 78vh;
+      min-height: 620px;
       border: 0;
+      border-radius: 16px;
       display: block;
+      background: white;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 16px 10px;
+      }
+
+      .encabezado {
+        padding: 20px 16px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .visor {
+        height: 72vh;
+        min-height: 500px;
+      }
     }
   </style>
 </head>
 <body>
-  <iframe class="visor" id="visorPdf" title="Invitacion PDF"></iframe>
+  <main class="contenedor">
+    <section class="encabezado">
+      <p class="subtitulo">Mis Quince</p>
+      <h1>Fátima Gabriela</h1>
+      <p class="texto">Tu invitación se abre aquí mismo.</p>
+    </section>
+
+    <section class="marco-pdf">
+      <iframe class="visor" id="visorPdf" title="Invitacion XV Fatima Gabriela"></iframe>
+    </section>
+  </main>
 
   <script>
     const params = new URLSearchParams(window.location.search);
