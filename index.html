@@ -47,6 +47,8 @@
       font-family: "Arapey", serif;
       color: var(--texto);
       background:
+        linear-gradient(rgba(249, 245, 239, 0.45), rgba(249, 245, 239, 0.45)),
+        url("/fondoverde.jpg") center/cover no-repeat,
         radial-gradient(circle at top left, rgba(151, 163, 107, 0.22), transparent 35%),
         radial-gradient(circle at bottom right, rgba(185, 152, 65, 0.18), transparent 35%),
         var(--crema);
@@ -81,6 +83,11 @@
       -webkit-text-fill-color: transparent;
     }
 
+    .nombres {
+      margin: 0 0 18px;
+      white-space: nowrap;
+    }
+
     h1,
     h2 {
       font-family: "Great Vibes", cursive;
@@ -92,6 +99,8 @@
       color: transparent;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 10px rgba(131, 214, 163, 0.22);
+      display: inline-block;
+      vertical-align: top;
     }
 
     h1 {
@@ -102,7 +111,7 @@
 
     h2 {
       font-size: 60px;
-      margin: 4px 0 18px;
+      margin: 0;
       line-height: 1.05;
       padding: 5px;
     }
@@ -182,6 +191,23 @@
       color: rgba(75, 70, 63, 0.7);
     }
 
+    .firma a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .firma a:hover {
+      text-decoration: underline;
+    }
+
+    .flor-loto {
+      display: block;
+      width: 100%;
+      max-width: 110px;
+      margin: 18px auto 0;
+      mix-blend-mode: multiply;
+    }
+
     @media (max-width: 380px) {
       .card {
         padding: 38px 22px 30px;
@@ -203,8 +229,10 @@
   <main class="card">
     <div class="subtitulo">Mis Quince</div>
 
-    <h1>Fátima</h1>
-    <h2>Gabriela</h2>
+    <div class="nombres">
+      <h1>Fátima</h1>
+      <h2>Gabriela</h2>
+    </div>
 
     <div class="fecha">18 de julio 2026</div>
 
@@ -237,7 +265,11 @@
 
     <div class="pases" id="textoPases"></div>
 
-    <div class="firma">www.thetwodesign.com</div>
+    <div class="firma">
+      <a href="https://www.thetwodesign.com" target="_blank" rel="noopener noreferrer">www.thetwodesign.com</a>
+    </div>
+
+    <img class="flor-loto" src="/flordeloto.jpg" alt="Flor de loto">
   </main>
 
   <script>
