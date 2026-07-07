@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Invitacion PDF</title>
   <style>
     * {
@@ -30,9 +33,12 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const archivo = params.get("file") || "1.pdf";
+    const version = params.get("v") || Date.now();
     const permitidos = new Set(["1.pdf", "2.pdf", "3.pdf", "4.pdf", "5.pdf"]);
 
-    document.getElementById("visorPdf").src = permitidos.has(archivo) ? archivo : "1.pdf";
+    document.getElementById("visorPdf").src = permitidos.has(archivo)
+      ? `${archivo}?v=${encodeURIComponent(version)}#toolbar=0&navpanes=0&scrollbar=0`
+      : `1.pdf?v=${encodeURIComponent(version)}#toolbar=0&navpanes=0&scrollbar=0`;
   </script>
 </body>
 </html>

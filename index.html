@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 
   <title>Mis XV Fátima Gabriela</title>
 
@@ -275,6 +278,7 @@
   <script>
     const params = new URLSearchParams(window.location.search);
 const pases = parseInt(params.get("pases")) || 1;
+const versionActual = "20260707-1";
 
 const archivos = {
   1: "1.pdf",
@@ -285,8 +289,9 @@ const archivos = {
 };
 
 // PDF
+const archivoPdf = archivos[pases] || archivos[1];
 document.getElementById("verInvitacion").href =
-  `viewer.html?file=${encodeURIComponent(archivos[pases] || archivos[1])}`;
+  `viewer.html?file=${encodeURIComponent(archivoPdf)}&v=${encodeURIComponent(versionActual)}`;
 
 // Texto de pases
 document.getElementById("textoPases").textContent =
