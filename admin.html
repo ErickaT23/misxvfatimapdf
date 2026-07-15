@@ -123,16 +123,6 @@
       color: var(--rojo);
     }
 
-    .sesion {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .oculto {
-      display: none;
-    }
-
     .secundario {
       background: rgba(255, 255, 255, 0.7);
       color: var(--verde-oscuro);
@@ -146,57 +136,29 @@
     <p class="descripcion">Activa o desactiva esta invitacion sin borrar el evento.</p>
     <div class="estado" id="estadoActual">Consultando estado actual...</div>
 
-    <div class="sesion" id="loginPanel">
-      <div>
-        <label for="adminEmail">Correo administrador</label>
-        <input id="adminEmail" type="email" autocomplete="username" placeholder="admin@correo.com" />
-      </div>
-
-      <div>
-        <label for="adminPassword">Contrasena</label>
-        <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Ingresa la contrasena" />
-      </div>
-
-      <button class="secundario" id="loginBtn" type="button">Ingresar</button>
-    </div>
-
-    <div class="acciones oculto" id="accionesPanel">
+    <div class="acciones" id="accionesPanel">
       <button class="activar" id="activarBtn" type="button">Activar invitacion</button>
       <button class="desactivar" id="desactivarBtn" type="button">Desactivar invitacion</button>
-      <button class="secundario" id="logoutBtn" type="button">Cerrar sesion</button>
     </div>
 
     <p class="mensaje" id="mensajeAdmin"></p>
   </main>
 
-  <script src="/event-config.js?v=20260715-1"></script>
-  <script src="/event-access.js?v=20260715-1"></script>
+  <script src="/event-config.js?v=20260715-2"></script>
+  <script src="/event-access.js?v=20260715-2"></script>
   <script>
     const estadoActual = document.getElementById("estadoActual");
     const mensajeAdmin = document.getElementById("mensajeAdmin");
-    const adminEmailInput = document.getElementById("adminEmail");
-    const adminPasswordInput = document.getElementById("adminPassword");
     const activarBtn = document.getElementById("activarBtn");
     const desactivarBtn = document.getElementById("desactivarBtn");
-    const loginBtn = document.getElementById("loginBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const loginPanel = document.getElementById("loginPanel");
-    const accionesPanel = document.getElementById("accionesPanel");
     const remoteConfig = window.EventAccess.getRemoteConfig();
     const EVENT_ID = remoteConfig.eventId;
 
     function setLoadingState(isLoading) {
       activarBtn.disabled = isLoading;
       desactivarBtn.disabled = isLoading;
-      loginBtn.disabled = isLoading;
-      logoutBtn.disabled = isLoading;
       activarBtn.style.opacity = isLoading ? "0.7" : "1";
       desactivarBtn.style.opacity = isLoading ? "0.7" : "1";
-    }
-
-    function renderAuthState(isLoggedIn) {
-      loginPanel.classList.toggle("oculto", isLoggedIn);
-      accionesPanel.classList.toggle("oculto", !isLoggedIn);
     }
 
     function renderStatus(isActive) {
@@ -239,39 +201,6 @@
       }
     }
 
-    async function login() {
-      const email = adminEmailInput.value.trim();
-      const password = adminPasswordInput.value;
-
-      if (!email || !password) {
-        mensajeAdmin.textContent = "Ingresa correo y contrasena.";
-        return;
-      }
-
-      setLoadingState(true);
-      mensajeAdmin.textContent = "Ingresando...";
-
-      try {
-        await window.EventAccess.signInAdmin(email, password);
-        mensajeAdmin.textContent = "Sesion iniciada.";
-      } catch (error) {
-        mensajeAdmin.textContent = "No se pudo iniciar sesion.";
-      } finally {
-        setLoadingState(false);
-      }
-    }
-
-    async function logout() {
-      setLoadingState(true);
-
-      try {
-        await window.EventAccess.signOutAdmin();
-        mensajeAdmin.textContent = "Sesion cerrada.";
-      } finally {
-        setLoadingState(false);
-      }
-    }
-
     activarBtn.addEventListener("click", function () {
       updateStatus(true);
     });
@@ -280,15 +209,7 @@
       updateStatus(false);
     });
 
-    loginBtn.addEventListener("click", login);
-    logoutBtn.addEventListener("click", logout);
-
-    window.EventAccess.waitForAuthState(function (user) {
-      renderAuthState(Boolean(user));
-      refreshStatus();
-    });
-
-    renderAuthState(false);
+    refreshStatus();
   </script>
 </body>
 </html>

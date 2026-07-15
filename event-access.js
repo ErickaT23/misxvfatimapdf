@@ -21,26 +21,19 @@
     if (!firebaseToolsPromise) {
       firebaseToolsPromise = Promise.all([
         import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"),
-        import("https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"),
-        import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js")
+        import("https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js")
       ]).then(function (modules) {
         const appModule = modules[0];
         const databaseModule = modules[1];
-        const authModule = modules[2];
         const config = getRemoteConfig();
         const app = appModule.initializeApp(config.firebaseConfig, config.firebaseConfig.projectId || config.eventId);
 
         return {
           app,
-          auth: authModule.getAuth(app),
           db: databaseModule.getDatabase(app),
           ref: databaseModule.ref,
           get: databaseModule.get,
-          set: databaseModule.set,
-          serverTimestamp: databaseModule.serverTimestamp,
-          signInWithEmailAndPassword: authModule.signInWithEmailAndPassword,
-          signOut: authModule.signOut,
-          onAuthStateChanged: authModule.onAuthStateChanged
+          set: databaseModule.set
         };
       });
     }
@@ -130,16 +123,6 @@
     };
   }
 
-  async function signInAdmin(email, password) {
-    const firebase = await getFirebaseTools();
-    return firebase.signInWithEmailAndPassword(firebase.auth, email, password);
-  }
-
-  async function signOutAdmin() {
-    const firebase = await getFirebaseTools();
-    return firebase.signOut(firebase.auth);
-  }
-
   async function updateStatus(isActive) {
     const config = getRemoteConfig();
     const firebase = await getFirebaseTools();
@@ -156,15 +139,8 @@
     };
   }
 
-  async function waitForAuthState(callback) {
-    const firebase = await getFirebaseTools();
-    return firebase.onAuthStateChanged(firebase.auth, callback);
-  }
-
   async function enforcePublicAccess(options) {
-    const { eventId, inactiveMessage, loadingMessage = "Verificando acceso..." } = options;
-
-    createOverlay(loadingMessage);
+    const { eventId, inactiveMessage } = options;
 
     try {
       const status = await fetchStatus(eventId);
@@ -192,9 +168,6 @@
     enforcePublicAccess,
     getRemoteConfig,
     hasRemoteConfig,
-    signInAdmin,
-    signOutAdmin,
-    updateStatus,
-    waitForAuthState
+    updateStatus
   };
 })();

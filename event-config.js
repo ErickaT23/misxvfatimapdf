@@ -1,7 +1,7 @@
 (function () {
   window.EVENT_REMOTE_CONFIG = {
     eventId: "misxvfatimapdf",
-    accessPath: "evento/misxvfatimapdf/access",
+    accessPath: "eventos/misxvfatimapdf/config/accessControl",
     firebaseConfig: {
       apiKey: "AIzaSyAqOZQ5YFOdhL6dblHI5wIx10m6n4xt2Fg",
       authDomain: "buenosdeseos-twodesign.firebaseapp.com",
