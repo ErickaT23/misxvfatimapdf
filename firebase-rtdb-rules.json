@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "evento": {
+      "$eventId": {
+        "access": {
+          ".read": true,
+          ".write": "auth != null",
+          ".validate": "newData.hasChildren(['isActive']) && newData.child('isActive').isBoolean() && (!newData.child('updatedAt').exists() || newData.child('updatedAt').isString())"
+        }
+      }
+    }
+  }
+}

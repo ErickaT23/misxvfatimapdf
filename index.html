@@ -20,7 +20,7 @@
   <meta property="og:image" content="https://i.postimg.cc/DfcGkW8D/XVFG1.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://misxvfatimagabriela.netlify.app/">
+  <meta property="og:url" content="https://misquincefatima.thetwodesign.com/">
 
   <link rel="icon" href="https://i.postimg.cc/DfcGkW8D/XVFG1.jpg" type="image/png">
 
@@ -225,6 +225,8 @@
       }
     }
   </style>
+  <script src="/event-config.js?v=20260715-1"></script>
+  <script src="/event-access.js?v=20260715-1"></script>
 </head>
 
 <body>
@@ -276,42 +278,53 @@
   </main>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-const pases = parseInt(params.get("pases")) || 1;
-const versionActual = "20260707-1";
+    const EVENT_ID = (window.EVENT_REMOTE_CONFIG && window.EVENT_REMOTE_CONFIG.eventId) || "misxvfatimapdf";
 
-const archivos = {
-  1: "1.pdf",
-  2: "2.pdf",
-  3: "3.pdf",
-  4: "4.pdf",
-  5: "5.pdf"
-};
+    async function initPage() {
+      const status = await window.EventAccess.enforcePublicAccess({
+        eventId: EVENT_ID,
+        inactiveMessage: "Invitacion no disponible, el acceso ha sido suspendido y el servicio pausado. Comunicate con tu proveedor para reactivarlo."
+      });
 
-// PDF
-const archivoPdf = archivos[pases] || archivos[1];
-document.getElementById("verInvitacion").href =
-  `viewer.html?file=${encodeURIComponent(archivoPdf)}&v=${encodeURIComponent(versionActual)}`;
+      if (status.isActive === false) {
+        return;
+      }
 
-// Texto de pases
-document.getElementById("textoPases").textContent =
-  pases === 1
-    ? "Hemos reservado para ti 1 pase"
-    : `Hemos reservado para ti ${pases} pases`;
+      const params = new URLSearchParams(window.location.search);
+      const pases = parseInt(params.get("pases"), 10) || 1;
+      const versionActual = "20260714-1";
+      const archivos = {
+        1: "1.pdf",
+        2: "2.pdf",
+        3: "3.pdf",
+        4: "4.pdf",
+        5: "5.pdf"
+      };
 
-// WhatsApp
-let mensaje;
+      const archivoPdf = archivos[pases] || archivos[1];
+      document.getElementById("verInvitacion").href =
+        `viewer.html?file=${encodeURIComponent(archivoPdf)}&v=${encodeURIComponent(versionActual)}`;
 
-if (pases === 1) {
-  mensaje =
-    "Hola, confirmo mi asistencia a los quince años de Fátima. Asistiré con 1 lugar reservado. Muchas gracias por la invitación. Nos vemos pronto.";
-} else {
-  mensaje =
-    `Hola, confirmamos nuestra asistencia a los quince años de Fátima. Asistiremos con ${pases} lugares reservados. Muchas gracias por la invitación. Nos vemos pronto.`;
-}
+      document.getElementById("textoPases").textContent =
+        pases === 1
+          ? "Hemos reservado para ti 1 pase"
+          : `Hemos reservado para ti ${pases} pases`;
 
-document.getElementById("confirmarAsistencia").href =
-  `https://api.whatsapp.com/send/?phone=50236738591&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0&wame_ctl=1`;
+      let mensaje;
+
+      if (pases === 1) {
+        mensaje =
+          "Hola, confirmo mi asistencia a los quince años de Fátima. Asistiré con 1 lugar reservado. Muchas gracias por la invitación. Nos vemos pronto.";
+      } else {
+        mensaje =
+          `Hola, confirmamos nuestra asistencia a los quince años de Fátima. Asistiremos con ${pases} lugares reservados. Muchas gracias por la invitación. Nos vemos pronto.`;
+      }
+
+      document.getElementById("confirmarAsistencia").href =
+        `https://api.whatsapp.com/send/?phone=50236738591&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0&wame_ctl=1`;
+    }
+
+    initPage();
   </script>
 
 </body>

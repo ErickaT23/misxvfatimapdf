@@ -85,6 +85,8 @@
       }
     }
   </style>
+  <script src="/event-config.js?v=20260715-1"></script>
+  <script src="/event-access.js?v=20260715-1"></script>
 </head>
 <body>
   <main class="contenedor">
@@ -95,12 +97,7 @@
   </main>
 
   <script type="module">
-    const params = new URLSearchParams(window.location.search);
-    const archivo = params.get("file") || "1.pdf";
-    const version = params.get("v") || Date.now();
-    const permitidos = new Set(["1.pdf", "2.pdf", "3.pdf", "4.pdf", "5.pdf"]);
-    const archivoSeguro = permitidos.has(archivo) ? archivo : "1.pdf";
-    const pdfUrl = `${archivoSeguro}?v=${encodeURIComponent(version)}`;
+    const EVENT_ID = (window.EVENT_REMOTE_CONFIG && window.EVENT_REMOTE_CONFIG.eventId) || "misxvfatimapdf";
     const estadoPdf = document.getElementById("estadoPdf");
     const paginasPdf = document.getElementById("paginasPdf");
 
@@ -137,7 +134,23 @@
     }
 
     async function cargarPdf() {
+      const accessStatus = await window.EventAccess.enforcePublicAccess({
+        eventId: EVENT_ID,
+        inactiveMessage: "Invitacion no disponible, el acceso ha sido suspendido y el servicio pausado. Comunicate con tu proveedor para reactivarlo."
+      });
+
+      if (accessStatus.isActive === false) {
+        estadoPdf.textContent = "Acceso inactivo.";
+        return;
+      }
+
       try {
+        const params = new URLSearchParams(window.location.search);
+        const archivo = params.get("file") || "1.pdf";
+        const version = params.get("v") || Date.now();
+        const permitidos = new Set(["1.pdf", "2.pdf", "3.pdf", "4.pdf", "5.pdf"]);
+        const archivoSeguro = permitidos.has(archivo) ? archivo : "1.pdf";
+        const pdfUrl = `${archivoSeguro}?v=${encodeURIComponent(version)}`;
         const pdfjsLib = await import("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.min.mjs");
         pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.worker.min.mjs";
 
